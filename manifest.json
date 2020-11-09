@@ -4,7 +4,7 @@
     "name": "Tex Johnson (The Trump Song)",
     "scope": "/",
     "display": "standalone",
-    "start_url": "http://127.0.0.1:5500/",
+    "start_url": "https://github.com/soroluciano/pwa-free-tunes",
     "short_name": "TexJohnsonSongs",
     "theme_color": "#222222",
     "description": "The Trump Song",
