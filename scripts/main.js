@@ -15,7 +15,7 @@
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       navigator.serviceWorker
-        .register('https://soroluciano.github.io/pwa-free-tunes/pwabuilder_sw.js')
+        .register('https://soroluciano.github.io/scripts/pwabuilder_sw.js')
         .then(reg => console.log('Service Worker: Registered (Pages)'))
         .catch(err => console.log(`Service Worker: Error: ${err}`));
     });
