@@ -101,7 +101,7 @@ self.addEventListener('activate', e =>{
 //       })
 //     );
 //   });
-
+self.addEventListener('fetch', e => {
 e.respondWith(
     caches.open(cacheName).then(cache => {
       cache.match(e.request).then(cacheResponse => {
@@ -115,7 +115,8 @@ e.respondWith(
     }).catch(error => {
       console.log('error in cache open: ', error)
     })
-  ) 
+  );
+}); 
 
 //viejo metodo de fetching 
 // self.addEventListener('fetch', e => {
