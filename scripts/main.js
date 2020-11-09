@@ -15,12 +15,14 @@
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       navigator.serviceWorker
-        .register('https://soroluciano.github.io/pwa-free-tunes/pwabuilder_sw.js')
+        // .register('https://soroluciano.github.io/pwa-free-tunes/pwabuilder_sw.js')
+        .register('../pwabuilder_sw.js')
         .then(reg => console.log('Service Worker: Registered (Pages)'))
         .catch(err => console.log(`Service Worker: Error: ${err}`));
     });
   }
   
+
   let main = document.querySelector('.main');
 
   var addToHome =
@@ -28,22 +30,22 @@ if ('serviceWorker' in navigator) {
   
   // var d1 = document.getElementById('one');
   main.insertAdjacentHTML('afterbegin', addToHome);
-
-
+  
+  
   let deferredPrompt;
   var div = document.querySelector('.add-to');
   var separator = document.querySelector('#separator');
-	var button = document.querySelector('.add-to-btn');
-	div.style.display = 'none';
+    var button = document.querySelector('.add-to-btn');
+    div.style.display = 'none';
   separator.style.display = 'none';
-	window.addEventListener('beforeinstallprompt', (e) => {
-	  // Prevent Chrome 67 and earlier from automatically showing the prompt
-	  e.preventDefault();
-	  // Stash the event so it can be triggered later.
-	  deferredPrompt = e;
-	  div.style.display = 'block';
+    window.addEventListener('beforeinstallprompt', (e) => {
+      // Prevent Chrome 67 and earlier from automatically showing the prompt
+      e.preventDefault();
+      // Stash the event so it can be triggered later.
+      deferredPrompt = e;
+      div.style.display = 'block';
     separator.style.display = 'block';
-
+  
     if(button){
       button.addEventListener('click', (e) => {
       // hide our user interface that shows our A2HS button
@@ -64,3 +66,7 @@ if ('serviceWorker' in navigator) {
       });
   }  
   });
+  
+  
+  
+  

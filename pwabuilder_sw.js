@@ -72,25 +72,42 @@ const cacheName = 'v1';
 
 self.addEventListener('install', e =>{
     console.log('Service Worker: Install');
+   // self.skipWaiting();
 });
 
 //evento de activacion
-self.addEventListener('activate', e =>{
-    console.log('Service Worker: Activated');
-    e.waitUntil(
-        caches.keys().then(cacheNames =>{
-            return Promise.all(
-                cacheNames.map(cache => {
-                    if(cache !== cacheName){
-                        console.log('Service Worker: Clearing old cache');           
-                    return caches.delete(cache);   
-                    }                    
-                })
-            )
-        })
-    )
-});
+//viejo
 
+// self.addEventListener('activate', e =>{
+//     console.log('Service Worker: Activated');
+//     e.waitUntil(
+//         caches.keys().then(cacheNames =>{
+//             return Promise.all(
+//                 cacheNames.map(cache => {
+//                     if(cache !== cacheName){
+//                         console.log('Service Worker: Clearing old cache');           
+//                     return caches.delete(cache);   
+//                     }                    
+//                 })
+//             )
+//         })
+//     )
+// });
+self.addEventListener('activate', function(event) {
+    event.waitUntil(
+      caches.keys().then(function(cacheNames) {
+        return Promise.all(
+          cacheNames.filter(function(cacheName) {
+            // Return true if you want to remove this cache,
+            // but remember that caches are shared across
+            // the whole origin
+          }).map(function(cacheName) {
+            return caches.delete(cacheName);
+          })
+        );
+      })
+    );
+  });
 
 
 // self.addEventListener("push", function() {
@@ -135,6 +152,3 @@ self.addEventListener('fetch', e => {
         }).catch(err => caches.match(e.request).then(res => res))
     );
 });
-
-
-
